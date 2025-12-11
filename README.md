@@ -50,9 +50,10 @@ To use this application, you need to set up a Spotify Developer application:
 
 1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
 2. Create a new app
-3. Add `https://hiddes03.github.io/top2000-to-spotify/` to the Redirect URIs
+3. Add `https://hiddes03.github.io/top2000-to-spotify/` to the Redirect URIs (or your local dev URL for development)
 4. Copy your Client ID
-5. Replace `YOUR_CLIENT_ID` in `src/App.jsx` with your actual Client ID
+5. Create a `.env` file in the project root (use `.env.example` as template)
+6. Set `VITE_SPOTIFY_CLIENT_ID` to your Client ID
 
 ## Deployment
 
@@ -63,7 +64,9 @@ The application is automatically deployed to GitHub Pages using GitHub Actions w
 1. Go to your repository settings
 2. Navigate to Pages section
 3. Set Source to "GitHub Actions"
-4. The workflow will automatically build and deploy the site
+4. Navigate to Settings > Secrets and variables > Actions
+5. Add a new repository secret named `VITE_SPOTIFY_CLIENT_ID` with your Spotify Client ID
+6. The workflow will automatically build and deploy the site with the configured Client ID
 
 ## Technologies Used
 

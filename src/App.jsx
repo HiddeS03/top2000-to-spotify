@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
-const SPOTIFY_CLIENT_ID = 'YOUR_CLIENT_ID'; // Users will need to configure this
+const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID || '';
 const SPOTIFY_REDIRECT_URI = window.location.origin + '/top2000-to-spotify/';
 const SPOTIFY_AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const SPOTIFY_SCOPES = 'playlist-modify-public playlist-modify-private';
@@ -15,7 +15,7 @@ function App() {
   const [accessToken, setAccessToken] = useState('');
 
   // Get access token from URL hash after Spotify redirect
-  useState(() => {
+  useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
       const params = new URLSearchParams(hash.substring(1));
@@ -28,6 +28,10 @@ function App() {
   }, []);
 
   const authenticateSpotify = () => {
+    if (!SPOTIFY_CLIENT_ID) {
+      setError('Spotify Client ID is not configured. Please check the setup instructions in the README.');
+      return;
+    }
     const authUrl = `${SPOTIFY_AUTH_ENDPOINT}?client_id=${SPOTIFY_CLIENT_ID}&redirect_uri=${encodeURIComponent(SPOTIFY_REDIRECT_URI)}&scope=${encodeURIComponent(SPOTIFY_SCOPES)}&response_type=token&show_dialog=true`;
     window.location.href = authUrl;
   };
@@ -200,6 +204,12 @@ function App() {
       <p className="subtitle">
         Convert your NPO Radio 2 Top 2000 voting list to a Spotify playlist
       </p>
+
+      {!SPOTIFY_CLIENT_ID && (
+        <div className="message error-message" style={{ marginBottom: '1rem' }}>
+          <strong>Configuration Required:</strong> Spotify Client ID is not configured. Please check the README for setup instructions.
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="input-form">
         <div className="input-group">
