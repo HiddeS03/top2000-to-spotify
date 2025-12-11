@@ -13,7 +13,7 @@ Convert your NPO Radio 2 Top 2000 voting list to a Spotify playlist with just on
 
 ## How to Use
 
-1. Visit the live application: [https://hiddes03.github.io/top2000-to-spotify/](https://hiddes03.github.io/top2000-to-spotify/)
+1. Visit the live application: **[https://hiddes03.github.io/top2000-to-spotify/](https://hiddes03.github.io/top2000-to-spotify/)**
 2. Go to [NPO Radio 2 Top 2000 voting site](https://npo.nl/luister/stem/npo-radio-2-top-2000-2025) and create your list
 3. Copy your submission URL (looks like: `https://npo.nl/luister/stem/npo-radio-2-top-2000-2025/inzending/019ae423-5404-729d-818e-b85e011a546f`)
 4. Paste the URL into the input field on the website
