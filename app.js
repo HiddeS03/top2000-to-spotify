@@ -114,7 +114,8 @@ function updateUISteps() {
 }
 
 function showUrlStep() {
-    // Step 3: Show URL input
+    // Step 3: Show URL input, hide playlist selection
+    stepPlaylist.style.display = 'none';
     stepUrl.style.display = 'block';
 }
 
@@ -699,8 +700,6 @@ createNewPlaylistButton.addEventListener('click', () => {
 
 selectExistingPlaylistButton.addEventListener('click', () => {
     selectedPlaylistMode = 'existing';
-    selectExistingPlaylistButton.classList.add('selected');
-    createNewPlaylistButton.classList.remove('selected');
     existingPlaylistSelector.style.display = 'block';
     hideMessages();
 });
@@ -710,7 +709,7 @@ playlistDropdown.addEventListener('change', (e) => {
     const selectedPlaylist = userPlaylists.find(p => p.id === selectedPlaylistId);
     selectedPlaylistName = selectedPlaylist ? selectedPlaylist.name : null;
     
-    // Proceed to next step when a playlist is selected
+    // Automatically proceed to URL input step when a playlist is selected
     if (selectedPlaylistId) {
         showUrlStep();
     }
