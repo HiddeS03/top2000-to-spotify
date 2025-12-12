@@ -117,14 +117,11 @@ function updateUISteps() {
 function updatePlaylistContext() {
     if (selectedPlaylistMode === 'new') {
         const year = new Date().getFullYear();
-        playlistContext.innerHTML = `<strong>📝 Afspeellijst modus:</strong> Nieuwe afspeellijst maken: "NPO Radio 2 Top 2000 - ${year}"`;
+        playlistContext.innerHTML = `Nieuwe afspeellijst maken: "NPO Radio 2 Top 2000 - ${year}"`;
     } else if (selectedPlaylistMode === 'existing' && selectedPlaylistName) {
         // Escape HTML to prevent XSS
         const escapedName = selectedPlaylistName.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-        playlistContext.innerHTML = `<strong>📝 Afspeellijst modus:</strong> Toevoegen aan bestaande afspeellijst: "${escapedName}"`;
-    } else if (selectedPlaylistMode === 'existing') {
-        // Fallback for when no playlist name is available yet
-        playlistContext.innerHTML = `<strong>📝 Afspeellijst modus:</strong> Toevoegen aan bestaande afspeellijst`;
+        playlistContext.innerHTML = `<strong>📝 Nummers toevoegen aan:</strong>"${escapedName}"`;
     }
 }
 
